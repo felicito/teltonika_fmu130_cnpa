@@ -24,4 +24,4 @@ const char AVLID_BREAKING[]         = "2";
 const char AVLID_CORNERING[]        = "3";
 const char AVLID_EVENT_START[]      = "1";
 const char AVLID_EVENT_STOP[]       = "0";
-const int IMEI_LENGHT               = 15
+const int IMEI_LENGHT               = 15;

@@ -12,8 +12,8 @@
 #include "BufferedSerial.h"
 
 // COMMANDS
-const int FMU130_COMMAND[]         = 65;
-const int SERVER_COMMAND[]         = 64;
+const int FMU130_COMMAND           = 65;
+const int SERVER_COMMAND           = 64;
 
 
 int read_fmu130_uart(BufferedSerial *puertoCOM, char m_buffer[1024]) {

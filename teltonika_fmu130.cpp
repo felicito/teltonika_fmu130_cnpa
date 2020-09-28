@@ -40,5 +40,5 @@ int identify_fmu130_payload(char m_buffer[1024]) {
     if (pch!=NULL) {
         type_of_payload = 2;
     }
-    return(type_of_payload)
+    return(type_of_payload);
 }

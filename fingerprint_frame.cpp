@@ -9,6 +9,8 @@
  * 
  */
 
+#include "mbed.h" 
+ 
 const char SERVER_SEPARATOR[]   = ";";
 const char FINGER_CMD_BEGIN[]   = "@";
 const char FINGER_CMD_EOF[]     = "#";
@@ -60,13 +62,13 @@ bool verify_finger_payload(char payload[1011]) {
     char *ret;
 
     // Verificar si se encuentra el inicio del comando @
-    ret = strchr(trama_entrante, FINGER_CMD_BEGIN[0]);
+    ret = strchr(payload, FINGER_CMD_BEGIN[0]);
     if (ret!=NULL) {
         inicio_encontrado = true;
     }
 
     // Verificar si se encuentra el fin de comando #
-    ret = strchr(trama_entrante, FINGER_CMD_EOF[0]);
+    ret = strchr(payload, FINGER_CMD_EOF[0]);
     if (ret!=NULL) {
         fin_encontrado = 1;
     }
@@ -85,7 +87,7 @@ bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, c
 
     // Extraer el comando
     for (x = FINGER_CMD_START; x <= FINGER_CMD_END; x++) {
-        comando[i] = trama_entrante[x];
+        comando[i] = payload[x];
         i++;
     }
     comando[i] = '\0';
@@ -93,24 +95,24 @@ bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, c
  
     // Extraer el ID
     for (x = FINGER_ID_BEGIN;  x <= FINGER_ID_END; x++) {
-        id_txt[i] = trama_entrante[x];
+        id_txt[i] = payload[x];
         i++;
     }
     id_txt[i] = '\0';
-    *id_huella = str_int(id_txt);
+    *id_huella = strID_to_intID(id_txt);
     i=0;
  
     char * pch;
-    pch = strrchr(trama_entrante, SEPARADOR[0]);
-    int posicion_puntoycoma = pch - trama_entrante + 1; 
+    pch = strrchr(payload, SERVER_SEPARATOR[0]);
+    int posicion_puntoycoma = pch - payload + 1; 
     // El segmento anterior busca la ultima posición del separador ";"
     // Documentación de las últimas líneas de código en:
     // http://www.cplusplus.com/reference/cstring/strrchr/
     
-    if (posicion_puntoycoma > GV_SHORT_PAYLOAD) {
-        int longitud_trama = strlen(trama_entrante);
-        for (x = GV_PAYLOAD_BEGIN; x <= longitud_trama; x++) {
-            huella_hex[i] = trama_entrante[x];
+    if (posicion_puntoycoma > FINGER_PAYLOAD) {
+        int longitud_trama = strlen(payload);
+        for (x = FINGER_PAYLOAD; x <= longitud_trama; x++) {
+            huella_hex[i] = payload[x];
             i++;
         }
         huella_hex[i] = '\0';
@@ -168,4 +170,3 @@ int identify_cmd_finger(char comando[4]) {
     }
     return(comand_int);
 }
-

@@ -34,13 +34,13 @@ bool verify_fmu130_payload(char payload[1011]) {
     char *ret;
 
     // Verificar si se encuentra el inicio del comando A
-    ret = strchr(payload, FMU130_START);
+    ret = strchr(payload, FMU130_START[0]);
     if (ret!=NULL) {
         a_encontrada = true;
     }
 
     // Verificar si se encuentra el separador "," 
-    ret = strchr(payload, FM1U30_SEPARATOR);
+    ret = strchr(payload, FM1U30_SEPARATOR[0]);
     if (ret!=NULL) {
         coma_encontrada = true;
     }
@@ -55,8 +55,8 @@ bool verify_fmu130_payload(char payload[1011]) {
 
 bool parse_fmu130_payload(char payload[1011], char header[2], char imei[16], int *cmd_fmu, int *param_fmu) {
     int i = 0;
-    char *avl_id;
-    char *status;
+    char avl_id[4];
+    char status[2];
     char *p;
 
 
@@ -77,7 +77,7 @@ bool parse_fmu130_payload(char payload[1011], char header[2], char imei[16], int
                 break;
 
             case 3:
-                strcpy(status,p)
+                strcpy(status,p);
                 *param_fmu = atoi(status);
                 break;
         }

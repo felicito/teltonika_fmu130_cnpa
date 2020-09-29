@@ -9,6 +9,7 @@
  * 
  */
 
+#include "mbed.h"
 
 // Teltonika AVL ID Events
 const char FM1U30_SEPARATOR[]        = ",";
@@ -33,13 +34,13 @@ bool verify_fmu130_payload(char payload[1011]) {
     char *ret;
 
     // Verificar si se encuentra el inicio del comando A
-    ret = strchr(payload, FMU130_START[0]);
+    ret = strchr(payload, FMU130_START);
     if (ret!=NULL) {
         a_encontrada = true;
     }
 
     // Verificar si se encuentra el separador "," 
-    ret = strchr(payload, FM1U30_SEPARATOR[0]);
+    ret = strchr(payload, FM1U30_SEPARATOR);
     if (ret!=NULL) {
         coma_encontrada = true;
     }
@@ -59,12 +60,12 @@ bool parse_fmu130_payload(char payload[1011], char header[2], char imei[16], int
     char *p;
 
 
-    p = strtok(payload, FM1U30_SEPARATOR[0]);
+    p = strtok(payload, FM1U30_SEPARATOR);
     strcpy(header,p);
 
     while (p != NULL) {
         i++;
-        p = strtok(NULL, FM1U30_SEPARATOR[0]);
+        p = strtok(NULL, FM1U30_SEPARATOR);
         switch(i) {
             case 1:
                 strcpy(imei,p);

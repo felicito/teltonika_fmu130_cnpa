@@ -12,10 +12,20 @@
 #include "BufferedSerial.h"
 
 // COMMANDS
+/**
+ * @brief 
+ * 
+ */
 const int FMU130_COMMAND           = 65;
 const int SERVER_COMMAND           = 64;
 
-
+/**
+ * @brief 
+ * 
+ * @param puertoCOM 
+ * @param m_buffer 
+ * @return int 
+ */
 int read_fmu130_uart(BufferedSerial *puertoCOM, char m_buffer[1024]) {
     int w = 0;
     while (puertoCOM -> readable()) {
@@ -27,6 +37,12 @@ int read_fmu130_uart(BufferedSerial *puertoCOM, char m_buffer[1024]) {
     return(w);
 }
 
+/**
+ * @brief 
+ * 
+ * @param m_buffer 
+ * @return int 
+ */
 int identify_fmu130_payload(char m_buffer[1024]) {
     int type_of_payload = -1;
     char *pch;

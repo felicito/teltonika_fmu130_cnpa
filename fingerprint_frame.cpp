@@ -10,7 +10,11 @@
  */
 
 #include "mbed.h" 
- 
+
+/**
+ * @brief 
+ * 
+ */
 const char SERVER_SEPARATOR[]   = ";";
 const char FINGER_CMD_BEGIN[]   = "@";
 const char FINGER_CMD_EOF[]     = "#";
@@ -22,7 +26,12 @@ const int FINGER_ID_BEGIN       = 5;
 const int FINGER_ID_END         = 8;
 const int FINGER_PAYLOAD        = 9;
 
-
+/**
+ * @brief 
+ * 
+ * @param cadena 
+ * @return int 
+ */
 int strID_to_intID(char cadena[5]) {
     /*
     Esta función recibe una cadena de 5 posiciones
@@ -56,6 +65,13 @@ int strID_to_intID(char cadena[5]) {
     return(result);
 }
 
+/**
+ * @brief 
+ * 
+ * @param payload 
+ * @return true 
+ * @return false 
+ */
 bool verify_finger_payload(char payload[1011]) {
     bool inicio_encontrado = false;  // Tipo Bool
     bool fin_encontrado = false;     // Tipo Bool
@@ -80,6 +96,16 @@ bool verify_finger_payload(char payload[1011]) {
     }
 }
 
+/**
+ * @brief 
+ * 
+ * @param payload 
+ * @param comando 
+ * @param id_huella 
+ * @param huella_hex 
+ * @return true 
+ * @return false 
+ */
 bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, char huella_hex[997]) {
     int x;          // Variable para moverse en el array de trama entrante
     int i = 0;      // Variable para moverse en el array de las sub cadenas
@@ -121,6 +147,14 @@ bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, c
     return(true);
 }
 
+/**
+ * @brief 
+ * 
+ * @param huella_hex 
+ * @param huella_ascii 
+ * @return true 
+ * @return false 
+ */
 bool fingerprint_HEX2CHAR(char huella_hex[997], char huella_ascii[499]) {
     /*
     Esta función se encarga de analisar el payload de una
@@ -148,6 +182,12 @@ bool fingerprint_HEX2CHAR(char huella_hex[997], char huella_ascii[499]) {
     return(true);
 }
 
+/**
+ * @brief 
+ * 
+ * @param comando 
+ * @return int 
+ */
 int identify_cmd_finger(char comando[4]) {
     /*
        Esta función se encarga de verificar que el comando a ejecutar es soportado

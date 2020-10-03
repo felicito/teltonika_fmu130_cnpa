@@ -20,7 +20,7 @@ const char FINGER_CMD_BEGIN[]   = "@";
 const char FINGER_CMD_EOF[]     = "#";
 const char ADD_CMD[]            = "ADD"; // AGREGAR HUELLA
 const char DEL_CMD[]            = "DEL"; // ELIMINAR HUELLA
-const char DIS_CMD[]            = "OFF"; // DESHABILITAR HUELLA
+const char OFF_CMD[]            = "OFF"; // DESHABILITAR HUELLA
 const char ENA_CMD[]            = "ON1"; // HABILITAR HUELLA
 const char QRY_CMD[]            = "ASK"; // INTERROGAR HUELLA
 const int FINGER_CMD_START      = 1;
@@ -214,6 +214,21 @@ int identify_cmd_finger(char comando[4]) {
     p = strstr(comando, DEL_CMD);
     if (p!=NULL) {
         comand_int = 2;
+    }
+
+    p = strstr(comando, OFF_CMD);
+    if (p!=NULL) {
+        comand_int = 3;
+    }
+
+    p = strstr(comando, ENA_CMD);
+    if (p!=NULL) {
+        comand_int = 4;
+    }
+
+        p = strstr(comando, QRY_CMD);
+    if (p!=NULL) {
+        comand_int = 5;
     }
 
 

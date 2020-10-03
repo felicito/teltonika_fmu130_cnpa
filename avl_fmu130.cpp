@@ -40,7 +40,7 @@ const int IMEI_LENGHT               = 15;
  * @return true 
  * @return false 
  */
-bool verify_fmu130_payload(char payload[1011]) {
+bool verify_fmu130_payload(char payload[1024]) {
     bool a_encontrada = false;  // Tipo Bool
     bool coma_encontrada = false;     // Tipo Bool
     char *ret;
@@ -77,7 +77,7 @@ bool verify_fmu130_payload(char payload[1011]) {
  * @return true 
  * @return false 
  */
-bool parse_fmu130_payload(char payload[1011], char header[2], char imei[16], int *cmd_fmu, int *param_fmu) {
+bool parse_fmu130_payload(char payload[1024], char header[2], char imei[16], int *cmd_fmu, int *param_fmu) {
     int i = 0;
     char avl_id[4];
     char status[2];

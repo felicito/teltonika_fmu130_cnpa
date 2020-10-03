@@ -32,7 +32,6 @@ const char AVLID_EVENT_STOP[]       = "0";
 const char FMU130_START[]           = "A";
 const int IMEI_LENGHT               = 15;
 
-
 /**
  * @brief 
  * 
@@ -64,8 +63,6 @@ bool verify_fmu130_payload(char payload[1024]) {
         return(false);  
     }
 }
-
-
 
 /**
  * @brief 

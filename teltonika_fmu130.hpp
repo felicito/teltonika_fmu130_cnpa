@@ -17,5 +17,6 @@
     extern const int SERVER_COMMAND;  
 
     int read_fmu130_uart(BufferedSerial *puertoCOM, char m_buffer[1024]);
+    int identify_fmu130_payload(char m_buffer[1024]);
 
 #endif // __TELTONIKA_FMU130_HPP

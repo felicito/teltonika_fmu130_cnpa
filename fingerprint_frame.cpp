@@ -20,6 +20,9 @@ const char FINGER_CMD_BEGIN[]   = "@";
 const char FINGER_CMD_EOF[]     = "#";
 const char ADD_CMD[]            = "ADD"; // AGREGAR HUELLA
 const char DEL_CMD[]            = "DEL"; // ELIMINAR HUELLA
+const char DIS_CMD[]            = "OFF"; // DESHABILITAR HUELLA
+const char ENA_CMD[]            = "ON1"; // HABILITAR HUELLA
+const char QRY_CMD[]            = "ASK"; // INTERROGAR HUELLA
 const int FINGER_CMD_START      = 1;
 const int FINGER_CMD_END        = 3;
 const int FINGER_ID_BEGIN       = 5;
@@ -144,7 +147,11 @@ bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, c
         huella_hex[i] = '\0';
     }
 
-    return(true);
+    if (i > 1) { // indica que entró en el lazo FOR porque es trama ADD
+        return(true);
+    } else { // no entro a lazo FOR y último valor de "i" fue 0.
+        return(false);
+    }
 }
 
 /**
@@ -208,5 +215,7 @@ int identify_cmd_finger(char comando[4]) {
     if (p!=NULL) {
         comand_int = 2;
     }
+
+
     return(comand_int);
 }

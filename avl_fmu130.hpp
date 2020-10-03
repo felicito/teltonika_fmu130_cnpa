@@ -29,6 +29,6 @@
     extern const int IMEI_LENGHT;
         
     bool verify_fmu130_payload(char payload[1024]);
-    bool parse_fmu130_payload(char payload[1024], char header[2], char imei[2], int cmd_fmu[2], int param_fmu);
+    bool parse_fmu130_payload(char payload[1024], char header[2], char imei[16], int *cmd_fmu, int *param_fmu);
 
 #endif // __AVL_FMU130_HPP

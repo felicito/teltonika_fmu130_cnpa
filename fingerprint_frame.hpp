@@ -28,6 +28,7 @@
 
     int strID_to_intID(char cadena[5]);
     bool verify_finger_payload(char payload[1011]);
+    
     bool parse_finger_payload(char payload[1011], char comando[4], int *id_huella, char huella_hex[997]);
     bool fingerprint_HEX2CHAR(char huella_hex[997], char huella_ascii[499]);
     int identify_cmd_finger(char comando[4]);
